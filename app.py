@@ -16,8 +16,8 @@ class Product(db.Model):
     __tablename__= "product"
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100) nullable=False)
-    price = db.Column(db.Integer nullable=False)
+    name = db.Column(db.String(100), nullable=False)
+    price = db.Column(db.Integer, nullable=False)
     stock = db.Column(db.Integer)
     description = db.Column(db.String(1000))
 
@@ -25,19 +25,32 @@ class Product(db.Model):
 
 # cli command
     
-@app.cli.command()
+@app.cli.command("create")
 def create_table():
     db.create_all()
     print("Table created")
 
-@app.cli.command()
+@app.cli.command("insert")
+def insert_data():
+    product1 = Product( name="Product 1", price=100, stock = 15, description="This is product 1")
+    product2 = Product( name="Product 2", price=200, stock = 16, description="This is awesome prodcution product")
+
+    db.session.add(product1)
+    db.session.add(product2)
+    db.session.commit()
+    print("Data inserted")
+
+
+@app.cli.command("drop")
 def drop_table():
     db.drop_all()
     print("Table dropped")
 
+#  route to all products
 
-
-
+@app.route('/products')
+def get_products():
+    
 
 
 
