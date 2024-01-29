@@ -50,7 +50,10 @@ def drop_table():
 
 @app.route('/products')
 def get_products():
-    
+    stmt = db.select(Product)
+    product_list = db.session.scalars(stmt)
+    return product_list
+
 
 
 
