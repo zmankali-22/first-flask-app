@@ -48,10 +48,10 @@ def insert_data():
     print("Data inserted")
 
 
-@app.cli.command("drop")
-def drop_table():
-    db.drop_all()
-    print("Table dropped")
+# @app.cli.command("drop")
+# def drop_table():
+#     db.drop_all()
+#     print("Table dropped")
 
 #  route to all products
 
